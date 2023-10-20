@@ -511,7 +511,7 @@ def add_driver_junior():
     # This function fetches caregiver information.
     caregiver_info=[]
     def fetch_caregiver_info():
-        cursor.execute("""SELECT CONCAT(driver.driver_id,' ',driver.first_name, ' ', driver.surname) AS caregiver_info FROM motorkhana.driver
+        cursor.execute("""SELECT CONCAT(driver.driver_id,' ',driver.first_name, ' ', driver.surname) AS caregiver_info FROM driver
         where age is null """)
         caregiver_rows= cursor.fetchall()     
         for row in caregiver_rows:
