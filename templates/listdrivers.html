@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+<h2 class="display-5">List of Drivers</h2>
+
+<table class="table table-striped table-bordered">
+
+    <tr>
+        <th>Driver Name</th>
+        <th>Car Model</th>
+        <th>Drive Class</th>
+    </tr>
+
+
+    {% for driver in drivers %}
+        <tr {% if driver[1] is not none %}class="table-warning"{% endif %}>
+            <!-- make junior yellow -->
+            <td><a href="{{ url_for('driverdetails', driver_name=driver[2]) }}">{{ driver[2] }}</a></td>
+            <td>{{ driver[3] }}</td>
+            <td>{{ driver[4] }}</td>
+        </tr>
+    {% endfor %}
+
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Interface{% endblock %}
+
+
+{% block content %}
+
+<!-- A 'container' class is used here, a common component in Bootstrap for a responsive fixed-width container wrapping the content of the page. -->
+<div class="container">
+
+  <!-- The 'nav' tag defines a section of navigation links. In this case, it's a vertical list of links, as suggested by the 'flex-column' class. -->
+  <nav class="nav flex-column">
+
+    <!-- This header appears at the top of the navigation menu, indicating that the following links are part of the Admin Interface. -->
+    <h1 class="display-5">Welcome to the Admin Interface</h1>
+    <ul>
+
+        <!-- Each 'a' element below is a link that the user can click to navigate to different sections of the web application. Each link uses Flask's 'url_for' function to generate the URL for the specific view dynamically. -->
+        
+        <!-- Navigates to the view that lists out all junior drivers. -->
+        <a class="nav-link" href="{{ url_for('juniordriverlist') }}">Junior Driver List</a>
+
+        <!-- Navigates to the view that allows searching for a driver by their name. -->
+        <a class="nav-link" href="{{ url_for('searchname') }}">Search for Driver Name</a>
+
+        <!-- Navigates to the view that allows the editing of 'runs,' though without specific context, it's unclear what 'runs' refers to here. -->
+        <a class="nav-link" href="{{ url_for('edit_runs') }}">Edit runs</a>
+
+        <!-- Navigates to the view where a new driver can be added to the system. -->
+        <a class="nav-link" href="{{ url_for('add_driver') }}">Add driver</a>
+    </ul>
+  </nav>
+
+</div> <!-- End of the 'container' div that wraps the navigation menu. -->
+{% endblock %}

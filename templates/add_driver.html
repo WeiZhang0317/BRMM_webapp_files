@@ -1,0 +1,26 @@
+{% extends "admin_interface.html" %}
+
+{% block title %}Add Driver{% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <!-- This 'nav' tag defines a navigation section, containing menu items or links. Here, it's used for different categories of drivers. -->
+  <nav class="nav flex-column">
+
+    <!-- This header is displayed on the page to ask users to select a category of driver to add. -->
+    <h1 class="display-5">Please select the driver's category:</h1>
+    <ul>
+        <!-- These are navigation links that allow the admin to select which type of driver they want to add. They lead to different routes depending on the category. -->
+        <!-- The 'url_for' function dynamically generates the URL to the route for adding an adult driver. -->
+        <a class="nav-link" href="{{ url_for('add_driver_adult') }}">Add Adult Driver</a>
+
+        <!-- Similarly, this 'url_for' function dynamically generates the URL to the route for adding a junior driver. -->
+        <a class="nav-link" href="{{ url_for('add_driver_junior') }}">Add Junior Driver</a>
+    </ul>
+  </nav>
+ <!-- The 'url_for' function is used here to create a URL linking back to the 'admin_interface' view. -->
+<a href="{{ url_for('admin_interface') }}" class="btn btn-primary mb-3">Back to Admin Interface</a>  
+</div>
+{% endblock %}
+

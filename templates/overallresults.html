@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+
+<h2 class="display-5">Overall results</h2>
+<h3 class="display-6">Current Competition Overall Results</h3>
+
+<nav>
+
+    <ul class="nav">
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('showgraph') }}">See Top5 Driver's Graph</a></li>
+
+    </ul>
+  </nav>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>Driver ID</th>
+            <th>Driver Name</th>
+            <th>Car Model</th>
+            <th>GoingLoopy</th>
+            <th>Mum'sFavourite</th>
+            <th>Walnut</th>
+            <th>Hamburger</th>
+            <th>Shoulders Back</th>
+            <th>Cracked Fluorescent</th>
+            <th>Overall Result</th>
+            <th>Prize level</th>
+        </tr>    
+        {% for result in results %} 
+        <tr>
+            <td>{{result[0]}}</td>
+            <td>{{result[1]}}</td>
+            <td>{{result[2]}}</td>
+            <td>{{result[3]}}</td>
+            <td>{{result[4]}}</td>
+            <td>{{result[5]}}</td>
+            <td>{{result[6]}}</td>
+            <td>{{result[7]}}</td>
+            <td>{{result[8]}}</td>
+            <td>{{result[9]}}</td>
+            <td>{{result[10]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
+
+
+
+

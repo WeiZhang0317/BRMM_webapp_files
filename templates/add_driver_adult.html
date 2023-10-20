@@ -1,0 +1,75 @@
+{% extends "add_driver.html" %}
+{% block content %}
+
+
+<div class="container">
+  <!-- Header for the page, indicating that we are on the 'Add Adult Driver' page. -->
+  <h2 class="display-5">Add Adult Driver</h2>
+
+  <!-- Beginning of the form. The 'action' is the URL the form will be sent to. This URL is dynamically created using Flask's 'url_for' function. -->
+  <form action="{{ url_for('add_driver_adult') }}" method="post">
+
+    <!-- 'row' and 'col' classes used for grid layout and responsive design. Here, it's used to align input fields in the form. -->
+    <div class="row g-3">
+        <div class="col">
+          <!-- Label for the driver's first name input field. -->
+          <label class="form-label">Driver FirstName:</label>
+          <!-- Input for the driver's first name. There are placeholders, validation patterns, and restrictions on the maximum length for the input. -->
+          <input class="form-control" placeholder="eg: Wei" type="text" id="driver_firstname" name="driver_firstname" maxlength="25" pattern="[A-Za-z\s]+" required title="Firstname can only contain letters.">
+        </div>
+        <div class="col">
+          <!-- Label for the driver's surname input field. -->
+          <label class="form-label">Driver SurName:</label>
+          <!-- Input for the driver's surname. Similar validations as the first name are applied here. -->
+          <input class="form-control" placeholder="eg: Zhang" type="text" id="driver_surname" name="driver_surname" maxlength="25" pattern="[A-Za-z\s]+" required title="Surname can only contain letters.">
+        </div>
+    </div>
+
+    <div class="row g-3">
+    
+        <div class="col">
+          <!-- Label for the driver's ID input field. -->
+          <label class="form-label">Driver ID:</label>
+          <!-- Numeric input for the driver's ID, with restrictions on the min, max, and step values. -->
+          <input class="form-control" placeholder="eg: 190" type="number" step="1" min="0" max="10000" id="driver_id" name="driver_id" required>
+        </div>
+
+        <div class="col">
+          <!-- Label for the car model select field. -->
+          <label class="form-label">Car Model:</label>
+          <!-- Dropdown selection for available car models. The options are dynamically populated from the 'existing_cars' variable. -->
+          <select class="form-select form-select-lg mb-3" aria-label="Large select example" 
+          id="car_model" name="car_model" required>
+          <option value="selected disabled hidden">Select Car Model</option>
+              {% for car in existing_cars %}
+                <!-- Iterating over each car model and creating an option element for it. -->
+                <option>{{ car }}</option>
+              {% endfor %}
+          </select>
+        </div>  
+
+    </div>
+
+    <!-- Submission button for the form. -->
+    <div>
+        <input type="submit" value="Add Driver" class="btn btn-primary mt-3">   
+    </div>   
+    <br>
+    <!-- Link to navigate back to the 'add_driver' page. -->
+    <div>
+        <a href="{{ url_for('add_driver') }}" class="btn btn-primary mb-3">Previous Page</a>    
+    </div>    
+
+    <!-- Conditional block that checks if 'message' variable exists and is not empty. If so, it displays the message in an alert div. -->
+    {% if message %}
+       <div class="col mt-2">
+        <div class="alert alert-info">
+        <!-- Display the content of 'message' variable. -->
+        {{ message }}
+        </div>
+       </div> 
+    {% endif %}
+
+</div> <!-- End of the container div -->
+</form> <!-- End of the form -->
+{% endblock %} <!-- End of the content block -->

@@ -1,0 +1,57 @@
+
+{% extends "edit_runs.html" %}
+{% block content %}
+<div class="container">
+<h2 class="display-5"> Edit Driver's run details</h2>
+
+<form action="{{ url_for('edit_runs_driver') }}" method="POST">
+  <p>
+      <label>Select a Driver:</label>
+      <select class="form-select form-select-lg mb-3" aria-label="Large select example" name="driver_name" id="driver_name">
+          <option>&lt; Select driver's name &gt;</option>
+          {% for driver in driver_names %}
+              <option>{{ driver }}</option>
+          {% endfor %}
+      </select>
+      
+      <button type="submit" class="btn btn-primary mb-3">Search</button>
+
+      <button type="submit"  name="return" value="1" class="btn btn-primary mb-3">Return</button>
+  </p>
+
+  {% if selected_driver %}
+  <input type="hidden" name="edit" value="true">  
+  <table class="table table-striped table-bordered">
+    <tr>
+        <th>DriverID</th>
+        <th>DriverName</th>
+        <th>CourseID</th>
+        <th>CourseName</th>
+        <th>RunNumber</th>
+        <th>Seconds</th>
+        <th>Cones</th>
+        <th>WD</th>
+ 
+    </tr>
+    {% for driver in driver_list %}
+        <tr>
+            <td>{{ driver['driver_id'] }}</td>
+            <td>{{ driver['driver_name'] }}</td>
+            <td>{{ driver['course_id'] }}</td>
+            <td>{{ driver['course_name'] }}</td>
+            <td>{{ driver['run_number'] }}</td>
+            <td><input type="number" step="0.01" name="seconds_{{ driver['driver_id'] }}_{{ driver['course_id'] }}_{{ driver['run_number'] }}" min="0" max="1000" value="{{ driver['seconds'] }}"></td>
+            <td><input type="number" step="1" name="cones_{{ driver['driver_id'] }}_{{ driver['course_id'] }}_{{ driver['run_number'] }}"  min="0" max="255" value="{{ driver['cones'] }}"></td>
+            <td><input type="number" step="1" name="wd_{{ driver['driver_id'] }}_{{ driver['course_id'] }}_{{ driver['run_number'] }}"  min="0" max="255" value="{{ driver['wd'] }}"></td>
+            
+            <!-- the input name need driverid crs id and run num to make sure it is specific -->
+        </tr>
+    {% endfor %}
+  </table>
+  <button type="submit" class="btn btn-primary mb-3">Save Edits</button>
+  {% endif %}
+</form>
+
+<a href="{{ url_for('edit_runs') }}" class="btn btn-primary mb-3">Back to choose edit method</a>
+</div>
+{% endblock %}

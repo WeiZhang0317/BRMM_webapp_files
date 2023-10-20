@@ -1,23 +1,29 @@
 {% extends "base.html" %}
+<!-- This template is extend from base html -->
+
 {% block content %}
+<div class="container">
+<h2 class="display-5">Course List</h2>
+<h3 class="display-6">Current Competition Courses</h3>
 
-<h2>Course List</h2>
-<h3>current competition courses</h3>
-
-<!-- code to display list of courses-->
-<table>
+<!-- Code to display list of courses -->
+<table class="table table-striped table-bordered">
     <tr>
         <th>Course</th>
         <th>Name</th>
         <th>Map diagram</th>
     </tr>
+<!--The content of the first line, which is the header: Course/Name/Map diagram-->
+
     {% for course in course_list %}
         <tr>
-            {% for field in course %}
-                <td>{{field}}</td>
-            {% endfor %}
+            <td>{{ course[0] }}</td> <!-- Course ID -->
+            <td>{{ course[1] }}</td> <!-- Course Name -->
+            <td><img src="{{ url_for('static', filename=course[2]) }}" alt="{{ course[1] }} Image"></td>
+            <!-- Use the image filename from the course data -->
         </tr>
     {% endfor %}
 </table>
-
+</div>
 {% endblock %}
+

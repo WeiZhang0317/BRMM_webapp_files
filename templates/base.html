@@ -7,26 +7,50 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     </head>
 
-    <body>
-      <nav>
-            <h1>Bankside Rakaia Motorkhana Mavens - Competition event</h1>
-            <ul>
-                <li><a href="{{ url_for('listdrivers') }}">List Drivers</a></li>
-                <li><a href="{{ url_for('listcourses') }}">List Courses</a></li>
-            </ul>
-          </nav>
-          <section class="content">
-            <header>
-              {% block header %}{% endblock %}
-            </header>
-            {% for message in get_flashed_messages() %}
-              <div class="flash">{{ message }}</div>
-            {% endfor %}
-            {% block content %}{% endblock %}
-          </section>
+  <body>
 
-        <!-- Bootstrap's JavaScript bundle including Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    </body>
+    
+    <nav class="nav flex-column">
 
+      <h1 class="display-5">Bankside Rakaia Motorkhana Mavens - Competition event</h1>
+      <ul>
+    
+        <!-- Link to view the list of courses in the event. -->
+        <a class="nav-link" href="{{ url_for('listcourses') }}">Courses List</a>
+
+        <!-- Link to view the list of drivers participating in the event. -->
+        <a class="nav-link" href="{{ url_for('listdrivers') }}">Drivers List</a>
+
+        <!-- Link to view detailed information about each driver's runs. -->
+        <a class="nav-link" href="{{ url_for('driverdetails') }}">Driver's Run Details</a>
+
+        <!-- Link to view the overall results of the event. -->
+        <a class="nav-link" href="{{ url_for('overallresults') }}">Overall Results</a>
+
+        <!-- Link to view a graphical representation of the top five drivers' performance. -->
+        <a class="nav-link" href="{{ url_for('showgraph') }}">Top5 Driver's Graph</a>
+
+        <!-- This part of the navigation offers a link to the administrative interface -->
+        <a class="btn btn-primary mb-3" href="{{ url_for('admin_interface') }}">Admin Interface</a>
+      </ul>
+    </nav>
+
+    <!-- This 'section' tag defines a section in a document, like a chapter, header, footer, or any other sections of the document. It is used here to define the main content area of the page. -->
+    <section class="content">
+
+      <!-- The 'header' tag is used to define the header for the 'section' or the page. -->
+      <header>
+        <!-- A Jinja2 'block' allows portions of the page to be overridden by child templates. This is the 'header' block. -->
+        {% block header %}{% endblock %}
+      </header>
+
+      <!-- This iterates over all messages that have been 'flashed' (a way to show one-time notifications), displaying them to the user. -->
+      {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+      {% endfor %}
+
+      <!-- Another Jinja2 'block' that allows the content of this part of the template to be overridden by child templates. -->
+      {% block content %}{% endblock %}
+    </section>
+  </body>
 </html>
