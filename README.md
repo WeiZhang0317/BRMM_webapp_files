@@ -233,3 +233,55 @@ In the requirements of edit run and add driver, I assume that all user input sho
 ######   Design decisions:
 
 In the edit run function, I limited the input second to a number with two decimal places, and wd and cones to be integers. In the add driver function, I restricted the input of the name to text and the input of driver ID to numbers. In order to ensure that the age of the junior driver is within the restricted range, the user is only allowed to select date of birth from "1998-01-01" to "2023-12-12"
+
+
+####  2.3 Table Design
+
+
+######   Assumptions:
+
+For Driver List, the task requires modifying the /listdrivers route so that it displays the car details associated with each driver. In the document, it is not specified what exactly the "details of the car" should contain. So I assume some basic and generally relevant information like "car model" and "driver class" should be included. Similarly, the driver run details task request does not provide a detailed list header, but only requires “driver’s run details”. I assumed that these run details should be data related to calculating the run total.
+
+
+######   Design decisions:
+
+In response to the updated demand for the "driver list", I adjusted the content related to the /listdrivers route. When designing the table, I made assumptions based on general car-related information and decided to include the car model and driver class.
+
+For the "driver run details" section, based on the task needed to list the "run total", I decided to add the relevant fields needed to calculate the "run total" in the table, such as "cones", "seconds", "wd", etc. This design choice was made to ensure that the table provides enough data for users to see and understand the complete results of each run.
+
+####  2.4 Template repeatability:
+######   Design decisions:
+
+To maintain consistency across the application, certain page templates are reused. For example, 'base.html' and 'admin_interface.html' ensure a unified appearance.
+
+Similarly, both the edit driver and the edit course use the drop-down menu to select the driver or course from the menu to make modifications, instead of combining the functions of the search driver and the edit driver. This is to maintain the consistency of the interface, and when the user only wants simple and intuitive operations are also possible when performing a single operation (only querying names rather than modifying related content)
+
+####  2.5 Navigation and Layout
+######   Design decisions:
+When designing the drop-down menu, I added a "return" back button and a "back to admin interface" option in the relevant pages of the admin interface to ensure that users can navigate freely on a certain page.
+
+####  2.6 GET and POST methods
+######   Design decisions:
+GET requests are used to retrieve and display data from a database and are useful when the user navigates to a page that displays data such as a driver list or course details. When users submit edited/added data or selected driver/course etc through forms, use POST requests to provide secure data transmission.
+
+####  2.7 Feedback and Confirmation:
+######   Design decisions:
+After operations such as adding, feedback "Driver added successfully!" is provided to the user. This design gives users the confidence to take the next step.
+
+####  2.8 Database Query Optimization
+######   Design decisions:
+Functions like fetch_overallresults() are used, which means the data processing is handled mainly within the database (through SQL queries), instead of retrieving large data sets and processing them in app.py. This decision reduces the computational load on the web server.
+
+
+####  2.9 Navigation to related content
+######   Design decisions:
+A link to the graph is designed on the overall result page so that users can see an intuitive graph after searching for the overall result without returning to the main interface.
+
+## 3. Database questions
+
+######   1. What SQL statement creates the car table and defines its three fields/columns? 
+
+######   2. Which line of SQL code sets up the relationship between the car and driver tables?
+######   3. Which 3 lines of SQL code insert the Mini and GR Yaris details into the car table?
+######   4. Suppose the club wanted to set a default value of ‘RWD’ for the driver_class field. What specific change would you need to make to the SQL to do this? 
+######   5. Suppose logins were implemented. Why is it important for drivers and the club admin to access different routes? As part of your answer, give two specific examples of problems that could occur if all of the web app facilities were available to everyone.
