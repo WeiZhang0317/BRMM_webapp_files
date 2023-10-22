@@ -3,12 +3,12 @@
 ## 1. Web application structure
 
 ### 1.1 List of courses
-#### Route: @app.route("/listcourses")  
-#### Function: listcourses()   getCursor()
-#### Template: courselist.html  
-#### Data: motorkhana database course table, 
+######   Route: @app.route("/listcourses")  
+######   Function: listcourses()   getCursor()
+######   Template: courselist.html  
+######   Data: motorkhana database course table, 
 the course_id name and image
-#### Relationship:
+######   Relationship:
 The route /listcourses is directly related to the listcourses() function. When this route is accessed by a user through their web browser, it triggers the execution of listcourses().
 
 This function connects to motorkhana database course table, retrieves all entries from the 'course' table in the database:  the course_id name and image, and then sends this data to the template "courselist.html" for rendering.
@@ -17,12 +17,12 @@ The data is stored in courseList, which is a list of tuples, where each tuple re
 
 
 ### 1.2 Driver’s run details
-####  Route: @app.route("/driverdetails" methods=["GET", "POST"])
-####  Function: driverdetails() getCursor()
-####  Template: driverdetails.html
-####  Data: motorkhana database - driver, run, course, car tables
+######   Route: @app.route("/driverdetails" methods=["GET", "POST"])
+######   Function: driverdetails() getCursor()
+######   Template: driverdetails.html
+######   Data: motorkhana database - driver, run, course, car tables
 driver: first name and surname, course: course name, car: car model and drive class, run: run num, second, cones and wd
-#### Relationship:
+######   Relationship:
 The route /driverdetails is directly related to the driverdetails() function. When this route is accessed by a user through their web browser, it triggers the execution of driverdetails().
 
 If it's a "GET" request and there's no driver name in the URL, the function fetches all driver names and displays an initial form with a dropdown menu, allowing the user to select a driver's name. The names are fetched using data (first name and surname) from the 'driver' table.
@@ -30,26 +30,26 @@ If it's a "GET" request and there's no driver name in the URL, the function fetc
 If it's a "POST" request or if a driver's name is specified, the function will either return the initial form with driver names (if the "return" button was pressed)  or the function will proceed to fetch detailed information about the selected driver. The information joins multiple tables (driver, run, course, car). It's sent to the "driverdetails.html" template for rendering. The data is stored in driver_details, which is a list of dictionaries.
 
 ### 1.3 List of drivers
-#### Route: @app.route("/listdrivers")
-#### Function: listdrivers() getCursor()
-#### Template: listdrivers.html
-#### Data: motorkhana database - driver and car tables， 
+######   Route: @app.route("/listdrivers")
+######   Function: listdrivers() getCursor()
+######   Template: listdrivers.html
+######   Data: motorkhana database - driver and car tables， 
 driver-first name and surname, car-car model, and drive class
-#### Relationship:
+######   Relationship:
 
 Inside the function listdrivers() , it retries data from the database. The data comes from the 'driver' and 'car' tables, including names, car models, and driving classes. After retrieval, the data is stored in a list of tuples named driver_details. This list is then passed to the listdrivers.html template via the drivers context variable.
 The listdrivers.html template: It iterates over its contents to display each driver's details on the webpage.
 Driver names in the table serve as links to selected driver's deatails (/driverdetails).
 
 ### 1.4 Overallresults
-#### Route: @app.route("/overallresults")
-#### Function: overallresults() fetch_overallresults() getCursor()
-#### Template: overallresults.html
-#### Data: motorkhana database - tables including 'driver', 'run', 'course', and 'car'
+######   Route: @app.route("/overallresults")
+######   Function: overallresults() fetch_overallresults() getCursor()
+######   Template: overallresults.html
+######   Data: motorkhana database - tables including 'driver', 'run', 'course', and 'car'
 driver:driver_id, first_name, surname,course: name, run: run_num, seconds, cones,wd,
 car: model, drive_class 
 
-#### Relationship:
+######   Relationship:
 The overallresults() function, is triggered by accessing the /overallresults route.
 
 By calling fetch_overallresults() executes a SQL query. It calculates overall result for each driver, etc.
@@ -59,10 +59,10 @@ The gathered data, representing various aspects like the fastest times and overa
 Moreover, the template has a direct link for visual performance analytics (See Top5 Driver's Graph)
 
 ###  1.5 Bar graph
-#### Route: @app.route("/graph")
-#### Function: showgraph() fetch_overallresults()
-#### Template: top5graph.html
-#### Data: motorkhana database - tables including 'driver', 'run', 'course', and 'car'
+######   Route: @app.route("/graph")
+######   Function: showgraph() fetch_overallresults()
+######   Template: top5graph.html
+######   Data: motorkhana database - tables including 'driver', 'run', 'course', and 'car'
 driver:driver_id, first_name, surname,course: name, run: run_num, seconds, cones,wd,
 car: model, drive_class 
  
@@ -77,10 +77,10 @@ The template uses Plotly to create a graph showing the top performances.
 The names list forms the Y-axis, and the scores list forms the X-axis of the graph.
 
 ### 1.6 Administrator Interface
-#### Route: @app.route("/admin_interface")
-#### Function: admin_interface()
-#### Template: admin_interface.html
-#### Data: No direct database interaction occurs in this function.
+######   Route: @app.route("/admin_interface")
+######   Function: admin_interface()
+######   Template: admin_interface.html
+######   Data: No direct database interaction occurs in this function.
 
 The function admin_interface() renders the 'admin_interface.html' template, providing no direct data interaction. The template outlines administrative tasks, each linked to different application routes using Flask's 'url_for' function.
 
@@ -98,10 +98,10 @@ The template constructs a table displaying the junior drivers' details, with a n
 
 
 ### 1.8 Driver search
-#### Route: @app.route("/searchname" methods=["GET", "POST"])
-#### Function: searchname() getCursor()
-#### Template: searchname.html
-#### Data: Motorkhana database - 'driver' table
+######   Route: @app.route("/searchname" methods=["GET", "POST"])
+######   Function: searchname() getCursor()
+######   Template: searchname.html
+######   Data: Motorkhana database - 'driver' table
 
 The function searchname() can handle both GET and POST methods for form submission. When the form is submitted (POST request), it takes the keyword input for driver's name, and searches in the 'driver' table of the database for matches by first or last name.
 
@@ -110,19 +110,19 @@ These results are then sent to the 'searchname.html' template. The template incl
 The template extends the basic structure from "admin_interface.html" and includes a link to navigate back to the main Admin Interface.
 
 ### 1.9 Edit runs
-#### Route: @app.route("/edit_runs")
-#### Function: edit_runs()
-#### Template: edit_runs.html
-#### Data: No direct database interaction occurs in this function.
+######   Route: @app.route("/edit_runs")
+######   Function: edit_runs()
+######   Template: edit_runs.html
+######   Data: No direct database interaction occurs in this function.
 The edit_runs() function renders the "edit_runs.html" template. This template is extends from "admin_interface.html".
 
 Within the "edit_runs.html" template, there's a navigational section presented as a list with two links, allowing the user to choose between editing runs by driver or by course. These links, 'Choose a driver to edit runs' and 'Choose a course to edit runs', redirect to the respective routes edit_runs_driver and edit_runs_course.
 
 ###  1.9.1 Edit runs driver
-#### Route: @app.route("/edit_runs_driver" methods=["GET", "POST"])
-#### Function: edit_runs_driver()
-#### Template: edit_runs_driver.html
-#### Data: driver Table, run Table, course Table
+######   Route: @app.route("/edit_runs_driver" methods=["GET", "POST"])
+######   Function: edit_runs_driver()
+######   Template: edit_runs_driver.html
+######   Data: driver Table, run Table, course Table
 
 GET Request:
 
@@ -137,10 +137,10 @@ Driver Selection: When a driver is chosen, detailed information about their runs
 Return Button: Refreshes the page by redirecting users to the same page.
 
 ###  1.9.2 Edit runs course
-#### Route: @app.route("/edit_runs_course" methods=["GET", "POST"])
-#### Function: edit_runs_course()
-#### Template: edit_runs_course.html
-#### Data: Motorkhana database - driver Table, run Table, course Table
+######   Route: @app.route("/edit_runs_course" methods=["GET", "POST"])
+######   Function: edit_runs_course()
+######   Template: edit_runs_course.html
+######   Data: Motorkhana database - driver Table, run Table, course Table
 course Table: Includes details like course_id and name.
 driver Table: Contains information such as driver_id, first_name, and surname.
 run Table: references to the course and driver tables through crs_id and dr_id, along with performance data like seconds, cones, and wd.
@@ -157,10 +157,10 @@ Updates run details (like 'seconds', 'cones', 'wd') in the database based on use
 Retrieves and displays detailed run information for a specific course selected from the dropdown menu.
 
 ###  1.10 Add driver
-#### Route:@app.route(/add_driver)
-#### Function: add_driver()
-#### Template: add_driver.html
-#### Data: No direct database interaction occurs in this function.
+######   Route:@app.route(/add_driver)
+######   Function: add_driver()
+######   Template: add_driver.html
+######   Data: No direct database interaction occurs in this function.
 
 The template extends a base layout template, admin_interface.html.
 
@@ -170,10 +170,10 @@ admin_interface.html has two navigation links are provided:
 A button to navigate back to the main admin interface.
 
 ###  1.10.1 Add driver adult
-#### Route: @app.route("/add_driver_adult", methods=["GET", "POST"])
-#### Function: add_driver_adult(), getCursor(), fetch_car_info()
-#### Template:add_driver_adult.html
-#### Data: Motorkhana database - 'car' table, 'driver' table, 'run' table
+######   Route: @app.route("/add_driver_adult", methods=["GET", "POST"])
+######   Function: add_driver_adult(), getCursor(), fetch_car_info()
+######   Template:add_driver_adult.html
+######   Data: Motorkhana database - 'car' table, 'driver' table, 'run' table
 The function add_driver_adult() is designed to handle both GET and POST requests for the form used to add an adult driver's information to the database.
 
 During a GET request, the function calls fetch_car_info() to retrieve available cars' information from the 'car' table. It then renders the template add_driver_adult.html, passing the car information.
@@ -185,10 +185,10 @@ Upon successful form submission, a message is displayed to the user.
 The template includes a link to navigate back to the 'add_driver' page.
 
 ###  1.10.2 Add driver junior
-#### Route: @app.route("/add_driver_junior", methods=["GET", "POST"])
-#### Function: add_driver_junior(), getCursor(), fetch_car_info(), fetch_caregiver_info()
-#### Template: add_driver_junior.html
-#### Data: Motorkhana database - 'car' table, 'driver' table, 'run' table
+######   Route: @app.route("/add_driver_junior", methods=["GET", "POST"])
+######   Function: add_driver_junior(), getCursor(), fetch_car_info(), fetch_caregiver_info()
+######   Template: add_driver_junior.html
+######   Data: Motorkhana database - 'car' table, 'driver' table, 'run' table
 GET Request: 
 
 Displays the form, pre-filled with data from the 'car' and 'driver' tables.
@@ -202,7 +202,7 @@ The add_driver_junior.html template features:
 Form inputs for entering specific driver information.Dynamic lists for caregiver and car selection.Upon successful form submission, a message is displayed to the user.Navigation link to the add driver homepage.
 
 ## 2.Assumptions and design decisions:
-####  2.1 Separate functional interface
+######   2.1 Separate functional interface
 ######   Assumptions:
 
 I assume that each Functional requirement has its own interface, which helps reduce confusion. It is assumed that the user has basic knowledge of using drop-down menus, submitting forms, etc. 
@@ -281,7 +281,37 @@ A link to the graph is designed on the overall result page so that users can see
 
 ######   1. What SQL statement creates the car table and defines its three fields/columns? 
 
+CREATE TABLE IF NOT EXISTS car
+(
+    car_num INT PRIMARY KEY NOT NULL,
+    model VARCHAR(20) NOT NULL,
+    drive_class VARCHAR(3) NOT NULL
+);
+
+
 ######   2. Which line of SQL code sets up the relationship between the car and driver tables?
+
+FOREIGN KEY (car) REFERENCES car(car_num)
+
+
 ######   3. Which 3 lines of SQL code insert the Mini and GR Yaris details into the car table?
+
+INSERT INTO car VALUES
+(11,'Mini','FWD'),
+(17,'GR Yaris','4WD');
+
 ######   4. Suppose the club wanted to set a default value of ‘RWD’ for the driver_class field. What specific change would you need to make to the SQL to do this? 
+
+CREATE TABLE IF NOT EXISTS car
+(
+    car_num INT PRIMARY KEY NOT NULL,
+    model VARCHAR(20) NOT NULL,
+    drive_class VARCHAR(3) NOT NULL DEFAULT 'RWD'
+);
+
+
 ######   5. Suppose logins were implemented. Why is it important for drivers and the club admin to access different routes? As part of your answer, give two specific examples of problems that could occur if all of the web app facilities were available to everyone.
+
+a) Data integrity: If each user can get access to the admin interface, then individuals can make changes to the data, such as changing results and modifying other drivers' information. This situation destroys the reliability of the database.
+
+b) Privacy issues: Allowing unrestricted access may lead to privacy breaches. For example, everyone can see who the minors are and their caregiver details. This could lead to legal issues.
