@@ -282,10 +282,15 @@ A link to the graph is designed on the overall result page so that users can see
 ######   1. What SQL statement creates the car table and defines its three fields/columns? 
 
 CREATE TABLE IF NOT EXISTS car
+
 (
+
     car_num INT PRIMARY KEY NOT NULL,
+    
     model VARCHAR(20) NOT NULL,
+    
     drive_class VARCHAR(3) NOT NULL
+    
 );
 
 
@@ -297,16 +302,23 @@ FOREIGN KEY (car) REFERENCES car(car_num)
 ######   3. Which 3 lines of SQL code insert the Mini and GR Yaris details into the car table?
 
 INSERT INTO car VALUES
+
 (11,'Mini','FWD'),
+
 (17,'GR Yaris','4WD');
 
 ######   4. Suppose the club wanted to set a default value of ‘RWD’ for the driver_class field. What specific change would you need to make to the SQL to do this? 
 
 CREATE TABLE IF NOT EXISTS car
+
 (
+
     car_num INT PRIMARY KEY NOT NULL,
+    
     model VARCHAR(20) NOT NULL,
+    
     drive_class VARCHAR(3) NOT NULL DEFAULT 'RWD'
+    
 );
 
 
