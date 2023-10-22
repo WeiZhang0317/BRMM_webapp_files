@@ -22,31 +22,33 @@
 </form>
 
 {% if selected_driver %}
+  <h5>Driver ID: {{ driver_list[0]['driver_id'] }}</h5>
+  <h5>Driver Name: {{ driver_list[0]['driver_name'] }}</h5>
+  <h5>Car Model: {{ driver_list[0]['car_model'] }}</h5>
+  <h5>Drive Class: {{ driver_list[0]['drive_class'] }}</h5>
+ <!-- to show the above only once It can choose any index to display the driver's header information because this information is consistent across all driving records.
+   In my code use the first entry i.e. index [0] to get such information-->
+
 <table class="table table-striped table-bordered">
   <tr>
-    <th>DriverID</th>
-    <th>DriverName</th>
     <th>CourseName</th>
     <th>RunNumber</th>
     <th>Seconds</th>
     <th>Cones</th>
     <th>WD</th>
     <th>RunTotal</th>
-    <th>CarModel</th>
-    <th>DriveClass</th>
+
   </tr>
   {% for driver in driver_list %}
+
       <tr>
-        <td>{{ driver['driver_id'] }}</td>
-        <td>{{ driver['driver_name'] }}</td>
         <td>{{ driver['course_name'] }}</td>
         <td>{{ driver['run_number'] }}</td>
         <td>{{ driver['seconds'] }}</td>
         <td>{{ driver['cones'] }}</td>
         <td>{{ driver['wd'] }}</td>
         <td>{{ driver['run_total'] }}</td>
-        <td>{{ driver['car_model'] }}</td>
-        <td>{{ driver['drive_class'] }}</td>
+  
       </tr>
   {% endfor %}
 </table>
