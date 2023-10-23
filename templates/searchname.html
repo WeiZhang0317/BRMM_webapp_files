@@ -1,15 +1,18 @@
 {% extends "admin_interface.html" %}
 {% block content %}
 <div class="container">
+    <!-- Title indicating the purpose of the page -->
 <h2 class="display-5">Search for Driver</h2>
 
 <form method="post">
+ <!-- Input field for the search term with a placeholder to guide input -->
+
     <input   class="form-control" 
     type="text" name="keyword" placeholder="Driver's name keyword">
     <br>
     <input  class="btn btn-primary mb-3"  type="submit" value="Search">
 </form>
-
+ <!-- Table for displaying search results -->
 <table class="table table-striped table-bordered">
   
 
@@ -25,7 +28,7 @@
 </table>
 
 
-
+  <!-- Navigation link to return to the main admin interface page -->
 <a href="{{ url_for('admin_interface') }}" class="btn btn-primary mb-3">Back to Admin Interface</a>
 </div>
 {% endblock %}

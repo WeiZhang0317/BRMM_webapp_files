@@ -1,4 +1,10 @@
 {% extends "edit_runs.html" %}
+
+<!-- 
+This template extends "edit_runs.html" and allows users to edit specific run details for a selected course. 
+Users can choose a course, view run details, and submit changes.
+-->
+
 {% block content %}
 <div class="container">
 <h2 class="display-5"> Edit Course's run details</h2>
@@ -55,7 +61,12 @@
               
           </tr>
       {% endfor %}
+  
     </table>
+
+   
+    
+
     <button class="btn btn-primary mb-3" type="submit" >Save Edits</button>
     {% endif %}
   </form>

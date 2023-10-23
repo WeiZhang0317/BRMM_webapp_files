@@ -25,14 +25,9 @@
            <input class="form-control" placeholder="eg: Zhang" type="text" id="driver_surname" name="driver_surname" maxlength="25" pattern="[A-Za-z\s]+" required title="Surname can only contain letters.">
          </div>
      </div> <!-- End of first row -->
- 
+     <br>
      <!-- A new row in the form, it's used here to collect the numeric ID of the driver and the driver's birthdate. -->
      <div class="row g-3">
-         <!-- Input for the driver's ID. It's a numeric field with certain boundaries. -->
-         <div class="col">  
-           <label class="form-label">Driver ID:</label>
-           <input class="form-control" placeholder="eg: 117" type="number" id="driver_id" name="driver_id" step="1" min="0" max="10000" required>
-         </div>
  
          <!-- Date input for the driver's birthdate, with defined min and max acceptable dates. -->
          <div class="col">
@@ -40,7 +35,7 @@
            <input class="form-control" type="date" id="birthdate" name="birthdate" min="1998-01-01" max="2023-12-12">
          </div>
      </div> <!-- End of second row -->
- 
+     <br>
      <!-- The third row, designed for selecting the caregiver from a dropdown and choosing the car model. -->
      <div class="row g-3">
          <!-- Dropdown to select the caregiver. The options are populated dynamically. -->
@@ -49,20 +44,21 @@
            <select class="form-select form-select-lg mb-3" aria-label="Large select example" 
            id="caregiver" name="caregiver" required> 
              <option value="selected disabled hidden">Select Caregiver</option>
-             {# Iterates through 'existing_caregiver' list, creating an option for each caregiver. #}
+             <option value="none">No Need Caregiver if age over 16</option> 
+             <!-- { Iterates through 'existing_caregiver' list, creating an option for each caregiver. } -->
              {% for caregivers in existing_caregiver %}
                <option>{{ caregivers }}</option>
              {% endfor %}
            </select>
          </div>
-        
+         <br>
          <!-- Dropdown to select the car model, with its options generated dynamically based on 'existing_cars'. -->
          <div class="col">
            <label class="form-label">Car Model:</label>
            <select class="form-select form-select-lg mb-3" aria-label="Large select example" 
              id="car_model" name="car_model" required>
              <option value="selected disabled hidden">Select Car Model</option>
-             {# Loop through each available car model and generate the corresponding option element. #}
+             <!-- {# Loop through each available car model and generate the corresponding option element. #} -->
              {% for car in existing_cars %}
                <option>{{ car }}</option>
              {% endfor %}
@@ -73,13 +69,17 @@
      <!-- The submit button for the form, styled by Bootstrap classes. -->
      <div>
        <input type="submit" value="Add Driver" class="btn btn-primary mt-3"> 
- 
+      </div> 
        <!-- A conditional block that checks if a 'message' variable is passed to the template. If so, it displays it. This is typically used for flashing messages like form submission feedback. -->
        {% if message %}
-          <div>{{ message }}</div>
-       {% endif %}
-     </div>  
+       <div class="col mt-2">
+        <div class="alert alert-info">
+         {{ message }}
+        </div>
+      </div>  
  
+       {% endif %}
+   
      <br>
  
      <!-- This part creates a link styled as a button that redirects users to the page handled by the 'add_driver' view. It's useful for navigation purposes. -->

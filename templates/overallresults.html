@@ -9,7 +9,7 @@
 <nav>
 
     <ul class="nav">
-
+ <!-- Navigation item providing a link to view a graph of the top five drivers' performances -->
         <li class="nav-item">
             <a class="nav-link" href="{{ url_for('showgraph') }}">See Top5 Driver's Graph</a></li>
 
@@ -31,6 +31,8 @@
         </tr>    
         {% for result in results %} 
         <tr>
+     <!-- Displaying details of each competitor and their performance in various courses -->
+            <td>{{result[0]}}</td>
             <td>{{result[0]}}</td>
             <td>{{result[1]}}</td>
             <td>{{result[2]}}</td>

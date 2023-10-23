@@ -1,3 +1,8 @@
+<!-- 
+This template allows the user to edit run details associated with a specific driver. 
+It extends the "edit_runs.html" file, providing a form to select a driver, view their run details, 
+and an option to submit changes for each run.
+-->
 
 {% extends "edit_runs.html" %}
 {% block content %}
@@ -47,6 +52,7 @@
             <!-- the input name need driverid crs id and run num to make sure it is specific -->
         </tr>
     {% endfor %}
+
   </table>
   <button type="submit" class="btn btn-primary mb-3">Save Edits</button>
   {% endif %}

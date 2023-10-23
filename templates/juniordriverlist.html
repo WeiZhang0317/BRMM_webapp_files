@@ -1,3 +1,7 @@
+<!--
+It creates a table view for the records of junior drivers, showing details such as Driver ID, Driver Name, Date of Birth, Age, and Caregiver information. 
+-->
+
 {% extends "admin_interface.html" %}
 {% block content %}
 <div class="container">
@@ -16,6 +20,7 @@
 
     {% for junior in juniorlist %}
         <tr>
+             <!-- Each 'junior' is a list where individual elements represent different data points for a junior driver -->
             <td>{{ junior[0] }}</td> 
             <td>{{ junior[1] }}</td>
             <td>{{ junior[2] }}</td>

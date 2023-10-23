@@ -1,18 +1,23 @@
 {% extends "admin_interface.html" %}
-
+<!-- 
+This template extends the "admin_interface.html" and is used to present editing options for run details. 
+The admin can choose a method for editing runs, either by selecting a specific driver or a specific course. 
+Navigation links are provided for each choice, and a link is also included for returning to the main admin interface.
+-->
 {% block title %}Edit runs{% endblock %}
 
 
 {% block content %}
 <div class="container">
 <nav class="nav flex-column">
+  <!-- Heading indicating the action to be taken -->
     <h1 class="display-5">Please choose the method of editting runs</h1>
     <ul>
         <a  class="nav-link" href="{{ url_for('edit_runs_driver') }}">Chooese a driver to edit runs</a>
         <a  class="nav-link" href="{{ url_for('edit_runs_course') }}">Chooese a course to edit runs</a>
     </ul>
   </nav>
-
+ <!-- Link for returning to the main admin interface page -->
 <a href="{{ url_for('admin_interface') }}" class="btn btn-primary mb-3">Back to Admin Interface</a>  
 </div>
 {% endblock %}
